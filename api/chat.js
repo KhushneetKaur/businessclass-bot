@@ -14,14 +14,14 @@ const norm = (q) => q.toLowerCase().replace(/[^\p{L}\p{N}\s]/gu, "").replace(/\s
 
 async function askGemini(question) {
   const r = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         systemInstruction: { parts: [{ text: SYSTEM }] },
         contents: [{ role: "user", parts: [{ text: question }] }],
-        generationConfig: { temperature: 0.2, maxOutputTokens: 800, thinkingConfig: {thinkingBudget: 0} },
+        generationConfig: { temperature: 0.2, maxOutputTokens: 1000 },
       }),
     }
   );
@@ -37,9 +37,9 @@ async function askGroq(question) {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${process.env.GROQ_API_KEY}` },
     body: JSON.stringify({
-      model: "llama-3.3-70b-versatile",
+      model: "openai/gpt-oss-120b",
       temperature: 0.2,
-      max_tokens: 400,
+      max_tokens: 1000,
       messages: [{ role: "system", content: SYSTEM }, { role: "user", content: question }],
     }),
   });
