@@ -63,7 +63,7 @@ module.exports = async (req, res) => {
     try {
       answer = await askGroq(question);
     } catch (e2) {
-      return res.status(503).json({ error: "Busy right now. Please try again in a minute or contact the course in-charge." });
+      return res.status(503).json({ error: "DEBUG" + e1.message + " | " + e2.message });
     }
   }
   if (cache.size > 500) cache.clear();
