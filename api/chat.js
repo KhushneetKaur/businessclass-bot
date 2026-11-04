@@ -21,7 +21,7 @@ async function askGemini(question) {
       body: JSON.stringify({
         systemInstruction: { parts: [{ text: SYSTEM }] },
         contents: [{ role: "user", parts: [{ text: question }] }],
-        generationConfig: { temperature: 0.2, maxOutputTokens: 400 },
+        generationConfig: { temperature: 0.2, maxOutputTokens: 800, thinkingConfig: {thinkingBudget: 0} },
       }),
     }
   );
