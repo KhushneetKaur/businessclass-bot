@@ -47,7 +47,12 @@ async function ask(text){
   add(text,"me");const wait=add("Thinking...","bot");send.disabled=true;
   try{
     const r=await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({question:text})});
-    const d=await r.json();wait.textContent=d.answer||d.error||"Something went wrong.";
+    if(!r.ok){wait.textContent=(await r.text())||"Something went wrong."}
+    else if(r.body&&r.body.getReader){
+      const rd=r.body.getReader(),dec=new TextDecoder();let out="";
+      while(true){const{done,value}=await rd.read();if(done)break;out+=dec.decode(value,{stream:true});wait.textContent=out;log.scrollTop=log.scrollHeight}
+      if(!out)wait.textContent="Something went wrong. Please try again."
+    }else{wait.textContent=await r.text()}
   }catch(e){wait.textContent="No connection. Check your internet and try again."}
   send.disabled=false;log.scrollTop=log.scrollHeight;
 }
