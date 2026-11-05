@@ -41,7 +41,8 @@
 </form>
 <script>
 const log=document.getElementById("log"),f=document.getElementById("f"),q=document.getElementById("q"),send=document.getElementById("send"),chips=document.getElementById("chips");
-function fmt(t){return t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/^\s*[-] /gm,"• ").replace(/\\(.+?)\\*/g,"<strong>$1</strong>")}
+// Turns the AI's markdown-style text into safe HTML (bold + bullets). \u002A is the asterisk character.
+function fmt(t){return t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/^\s*[\u002A-] /gm,"• ").replace(/\u002A\u002A(.+?)\u002A\u002A/g,"<strong>$1</strong>")}
 function add(t,c){const d=document.createElement("div");d.className="m "+c;d.textContent=t;log.appendChild(d);log.scrollTop=log.scrollHeight;return d}
 async function ask(text){
   chips.remove&&chips.remove();
