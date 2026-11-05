@@ -39,14 +39,15 @@ ${faq}`;
 
 async function askGemini(system, question) {
   const r = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.8-flash:generateContent?key=${process.env.GEMINI_API_KEY}`,
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=${process.env.GEMINI_API_KEY}`,
     {
       method: "POST",
+      signal: AbortSignal.timeout (8000),
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         systemInstruction: { parts: [{ text: system }] },
         contents: [{ role: "user", parts: [{ text: question }] }],
-        generationConfig: { temperature: 0.2, maxOutputTokens: 1000, thinkingConfig: {thinkingLevel: "low" } },
+        generationConfig: { temperature: 0.2, maxOutputTokens: 1000 },
       }),
     }
   );
@@ -60,6 +61,7 @@ async function askGemini(system, question) {
 async function askGroq(system, question) {
   const r = await fetch("https://api.groq.com/openai/v1/chat/completions", {
     method: "POST",
+    signal: AbortSignal.timeout (8000),
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${process.env.GROQ_API_KEY}` },
     body: JSON.stringify({
       model: "openai/gpt-oss-120b",
