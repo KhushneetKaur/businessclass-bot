@@ -15,10 +15,10 @@ async function getFaq() {
   if (!DOC_ID || Date.now() - lastLoad < REFRESH_MS) return faqText;
   lastLoad = Date.now();
   try {
-    const r = await fetch(`https://docs.google.com/document/d/${DOC_ID}/export?format=txt`);
+    const r = await fetch(`https://docs.google.com/document/d/${DOC_ID}/export?format=txt`, { signal : AbortSignal.timeout (4000) });
     if (r.ok) {
       const t = (await r.text()).replace(/^\uFEFF/, "").trim();
-      if (t.length > 200 && t !== faqText) {
+      if (t.length > 200 &&  !t.includes ("<html") && t!== faqText) {
         faqText = t;
         cache.clear(); // FAQ changed, so old cached answers may be stale
       }
