@@ -1,11 +1,17 @@
 const fs = require("fs");
 const path = require("path");
 
-// FAQ comes from Sir's Google Doc (set FAQ_DOC_ID in Vercel). 
+// ---- Settings (change in Vercel > Settings > Environment Variables, NOT in code) ----
+// FAQ_DOC_ID    : Google Doc ID holding the FAQ (falls back to faq.txt)
+// GEMINI_MODELS : optional, comma-separated, tried in order
+// GROQ_MODELS   : optional, comma-separated, tried in order
 const DOC_ID = process.env.FAQ_DOC_ID;
-const FALLBACK = fs.readFileSync(path.join(process.cwd(), "faq.txt"), "utf8");
-const REFRESH_MS = 2 * 60 * 1000; // re-read the doc every 2 minutes
+const GEMINI_MODELS = (process.env.GEMINI_MODELS || "gemini-flash-lite-latest,gemini-flash-latest").split(",").map((s) => s.trim()).filter(Boolean);
+const GROQ_MODELS = (process.env.GROQ_MODELS || "openai/gpt-oss-120b,openai/gpt-oss-20b").split(",").map((s) => s.trim()).filter(Boolean);
+const TIMEOUT_MS = 8000;
+const REFRESH_MS = 2 * 60 * 1000;
 
+const FALLBACK = fs.readFileSync(path.join(process.cwd(), "faq.txt"), "utf8");
 let faqText = FALLBACK;
 let lastLoad = 0;
 const cache = new Map();
@@ -15,16 +21,16 @@ async function getFaq() {
   if (!DOC_ID || Date.now() - lastLoad < REFRESH_MS) return faqText;
   lastLoad = Date.now();
   try {
-    const r = await fetch(`https://docs.google.com/document/d/${DOC_ID}/export?format=txt`, { signal : AbortSignal.timeout (4000) });
+    const r = await fetch(`https://docs.google.com/document/d/${DOC_ID}/export?format=txt`, { signal: AbortSignal.timeout(4000) });
     if (r.ok) {
       const t = (await r.text()).replace(/^\uFEFF/, "").trim();
-      if (t.length > 200 &&  !t.includes ("<html") && t!== faqText) {
+      if (t.length > 200 && !t.includes("<html") && t !== faqText) {
         faqText = t;
-        cache.clear(); // FAQ changed, so old cached answers may be stale
+        cache.clear();
       }
     }
   } catch (e) {
-    
+    /* keep last good copy */
   }
   return faqText;
 }
@@ -37,12 +43,12 @@ Never ask for or store personal data like passwords or ID numbers.
 FAQ:
 ${faq}`;
 
-async function askGemini(system, question) {
+async function askGemini(model, system, question) {
   const r = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent?key=${process.env.GEMINI_API_KEY}`,
+    `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${process.env.GEMINI_API_KEY}`,
     {
       method: "POST",
-      signal: AbortSignal.timeout (8000),
+      signal: AbortSignal.timeout(TIMEOUT_MS),
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         systemInstruction: { parts: [{ text: system }] },
@@ -51,29 +57,50 @@ async function askGemini(system, question) {
       }),
     }
   );
-  if (!r.ok) throw new Error("gemini " + r.status);
+  if (!r.ok) throw new Error(`gemini ${model} ${r.status}`);
   const d = await r.json();
   const t = d.candidates?.[0]?.content?.parts?.map((p) => p.text).join("");
-  if (!t) throw new Error("gemini empty");
+  if (!t) throw new Error(`gemini ${model} empty`);
   return t;
 }
 
-async function askGroq(system, question) {
+async function askGroq(model, system, question) {
+  const body = {
+    model,
+    temperature: 0.2,
+    max_tokens: 1000,
+    messages: [{ role: "system", content: system }, { role: "user", content: question }],
+  };
+  if (model.includes("gpt-oss")) body.reasoning_effort = "low";
   const r = await fetch("https://api.groq.com/openai/v1/chat/completions", {
     method: "POST",
-    signal: AbortSignal.timeout (8000),
+    signal: AbortSignal.timeout(TIMEOUT_MS),
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${process.env.GROQ_API_KEY}` },
-    body: JSON.stringify({
-      model: "openai/gpt-oss-120b",
-      temperature: 0.2,
-      max_tokens: 1000,
-      reasoning_effort: "low",
-      messages: [{ role: "system", content: system }, { role: "user", content: question }],
-    }),
+    body: JSON.stringify(body),
   });
-  if (!r.ok) throw new Error("groq " + r.status);
+  if (!r.ok) throw new Error(`groq ${model} ${r.status}`);
   const d = await r.json();
-  return d.choices[0].message.content;
+  const t = d.choices?.[0]?.message?.content;
+  if (!t) throw new Error(`groq ${model} empty`);
+  return t;
+}
+
+// Try every model in order until one works
+async function generate(system, question) {
+  const attempts = [
+    ...GEMINI_MODELS.map((m) => () => askGemini(m, system, question)),
+    ...GROQ_MODELS.map((m) => () => askGroq(m, system, question)),
+  ];
+  const errors = [];
+  for (const run of attempts) {
+    try {
+      return await run();
+    } catch (e) {
+      errors.push(e.message);
+    }
+  }
+  console.error("All models failed:", errors.join(" | ")); // visible in Vercel Logs
+  throw new Error("all failed");
 }
 
 module.exports = async (req, res) => {
@@ -85,18 +112,12 @@ module.exports = async (req, res) => {
   const key = norm(question);
   if (cache.has(key)) return res.json({ answer: cache.get(key), cached: true });
 
-  const system = systemPrompt(faq);
-  let answer;
   try {
-    answer = await askGemini(system, question);
-  } catch (e1) {
-    try {
-      answer = await askGroq(system, question);
-    } catch (e2) {
-      return res.status(503).json({ error: "Busy right now. Please try again in a minute or contact the course in-charge." });
-    }
+    const answer = await generate(systemPrompt(faq), question);
+    if (cache.size > 500) cache.clear();
+    cache.set(key, answer);
+    res.json({ answer });
+  } catch (e) {
+    res.status(503).json({ error: "Busy right now. Please try again in a minute or contact the course in-charge." });
   }
-  if (cache.size > 500) cache.clear();
-  cache.set(key, answer);
-  res.json({ answer });
 };
