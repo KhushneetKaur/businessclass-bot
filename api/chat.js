@@ -56,81 +56,137 @@ WHEN YOU DON'T KNOW
 FAQ:
 ${faq}`;
 
-async function askGemini(model, system, question) {
-  const r = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${process.env.GEMINI_API_KEY}`,
-    {
-      method: "POST",
-      signal: AbortSignal.timeout(TIMEOUT_MS),
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        systemInstruction: { parts: [{ text: system }] },
-        contents: [{ role: "user", parts: [{ text: question }] }],
-        generationConfig: { temperature: 0.2, maxOutputTokens: 1000 },
-      }),
+
+// ---- Streaming helpers: each yields text pieces as the model writes them ----
+async function* readSSE(r) {
+  const reader = r.body.getReader();
+  const dec = new TextDecoder();
+  let buf = "";
+  while (true) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    buf += dec.decode(value, { stream: true });
+    const lines = buf.split("\n");
+    buf = lines.pop();
+    for (const line of lines) {
+      if (line.startsWith("data:")) yield line.slice(5).trim();
     }
-  );
-  if (!r.ok) throw new Error(`gemini ${model} ${r.status}`);
-  const d = await r.json();
-  const t = d.candidates?.[0]?.content?.parts?.map((p) => p.text).join("");
-  if (!t) throw new Error(`gemini ${model} empty`);
-  return t;
+  }
 }
 
-async function askGroq(model, system, question) {
-  const body = {
-    model,
-    temperature: 0.2,
-    max_tokens: 1000,
-    messages: [{ role: "system", content: system }, { role: "user", content: question }],
-  };
-  if (model.includes("gpt-oss")) body.reasoning_effort = "low";
-  const r = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-    method: "POST",
-    signal: AbortSignal.timeout(TIMEOUT_MS),
-    headers: { "Content-Type": "application/json", Authorization: `Bearer ${process.env.GROQ_API_KEY}` },
-    body: JSON.stringify(body),
-  });
-  if (!r.ok) throw new Error(`groq ${model} ${r.status}`);
-  const d = await r.json();
-  const t = d.choices?.[0]?.message?.content;
-  if (!t) throw new Error(`groq ${model} empty`);
-  return t;
+// Abort the request only if the model hasn't started answering within TIMEOUT_MS
+function withStartTimeout() {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), TIMEOUT_MS);
+  return { signal: ctrl.signal, started: () => clearTimeout(timer), stop: () => clearTimeout(timer) };
 }
 
-// Try every model in order until one works
-async function generate(system, question) {
+async function* streamGemini(model, system, question) {
+  const t = withStartTimeout();
+  try {
+    const r = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${model}:streamGenerateContent?alt=sse&key=${process.env.GEMINI_API_KEY}`,
+      {
+        method: "POST",
+        signal: t.signal,
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          systemInstruction: { parts: [{ text: system }] },
+          contents: [{ role: "user", parts: [{ text: question }] }],
+          generationConfig: { temperature: 0.2, maxOutputTokens: 1000 },
+        }),
+      }
+    );
+    if (!r.ok) throw new Error(`gemini ${model} ${r.status}`);
+    for await (const data of readSSE(r)) {
+      let j;
+      try { j = JSON.parse(data); } catch { continue; }
+      const parts = j.candidates?.[0]?.content?.parts || [];
+      const text = parts.filter((p) => !p.thought).map((p) => p.text || "").join("");
+      if (text) { t.started(); yield text; }
+    }
+  } finally {
+    t.stop();
+  }
+}
+
+async function* streamGroq(model, system, question) {
+  const t = withStartTimeout();
+  try {
+    const body = {
+      model,
+      stream: true,
+      temperature: 0.2,
+      max_tokens: 1000,
+      messages: [{ role: "system", content: system }, { role: "user", content: question }],
+    };
+    if (model.includes("gpt-oss")) body.reasoning_effort = "low";
+    const r = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      method: "POST",
+      signal: t.signal,
+      headers: { "Content-Type": "application/json", Authorization: `Bearer ${process.env.GROQ_API_KEY}` },
+      body: JSON.stringify(body),
+    });
+    if (!r.ok) throw new Error(`groq ${model} ${r.status}`);
+    for await (const data of readSSE(r)) {
+      if (data === "[DONE]") return;
+      let j;
+      try { j = JSON.parse(data); } catch { continue; }
+      const text = j.choices?.[0]?.delta?.content;
+      if (text) { t.started(); yield text; }
+    }
+  } finally {
+    t.stop();
+  }
+}
+
+// Tries each model in order. Sends text to the student as it arrives.
+async function generateStream(system, question, res) {
   const attempts = [
-    ...GROQ_MODELS.map((m) => () => askGroq(m, system, question)),
-    ...GEMINI_MODELS.map((m) => () => askGemini(m, system, question)),
+    ...GROQ_MODELS.map((m) => () => streamGroq(m, system, question)),
+    ...GEMINI_MODELS.map((m) => () => streamGemini(m, system, question)),
   ];
   const errors = [];
   for (const run of attempts) {
+    let text = "";
     try {
-      return await run();
+      for await (const piece of run()) {
+        text += piece;
+        res.write(piece);
+      }
+      if (text) return { text, complete: true };
+      errors.push("empty answer");
     } catch (e) {
       errors.push(e.message);
+      if (text) return { text, complete: false }; // failed midway: keep what was already sent
     }
   }
   console.error("All models failed:", errors.join(" | ")); // visible in Vercel Logs
-  throw new Error("all failed");
+  return { text: "", complete: false };
 }
 
 module.exports = async (req, res) => {
-  if (req.method !== "POST") return res.status(405).json({ error: "POST only" });
+  if (req.method !== "POST") { res.statusCode = 405; return res.end("POST only"); }
   const question = String(req.body?.question || "").trim().slice(0, 300);
-  if (!question) return res.status(400).json({ error: "Empty question" });
+  if (!question) { res.statusCode = 400; return res.end("Empty question"); }
 
   const faq = await getFaq();
   const key = norm(question);
-  if (cache.has(key)) return res.json({ answer: cache.get(key), cached: true });
 
-  try {
-    const answer = await generate(systemPrompt(faq), question);
-    if (cache.size > 500) cache.clear();
-    cache.set(key, answer);
-    res.json({ answer });
-  } catch (e) {
-    res.status(503).json({ error: "Busy right now. Please try again in a minute or contact the course in-charge." });
+  res.setHeader("Content-Type", "text/plain; charset=utf-8");
+  res.setHeader("Cache-Control", "no-cache, no-transform");
+  res.setHeader("X-Accel-Buffering", "no");
+
+  if (cache.has(key)) return res.end(cache.get(key));
+
+  const { text, complete } = await generateStream(systemPrompt(faq), question, res);
+  if (!text) {
+    res.statusCode = 503;
+    return res.end("Busy right now. Please try again in a minute or contact the course in-charge.");
   }
+  if (complete) {
+    if (cache.size > 500) cache.clear();
+    cache.set(key, text);
+  }
+  res.end();
 };
