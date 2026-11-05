@@ -1,0 +1,154 @@
+BUSINESS CLASS (ENTREPRENEURSHIP MINDSET COURSE) - FREQUENTLY ASKED QUESTIONS
+Source: official replies and notices in the course support WhatsApp group (MRSPTU and affiliated colleges), 21 May 2026 to 4 Nov 2026.
+Status of known issues is as of 4 November 2026. Update this file when things change.
+Contact: Course Coordinator Dr. Jagdeep Sharma. Helpline Number: 9915852929. Raise a ticket in the app or portal first.
+
+FREQUENTLY ASKED QUESTIONS:
+
+=== ABOUT THE COURSE ===
+
+Q: What is Business Class (Entrepreneurship Mindset Course, EMC)?
+A: Business Class, also called the Entrepreneurship Mindset Course (EMC), is a mandatory 2-credit course introduced by the Punjab Government (Team Punjab Startup with the Department of Technical Education) for students of MRSPTU and its affiliated colleges. Students complete milestones and tasks on the Business Class website and app. The course name, codes and credit structure across semesters 1 to 5 remain unchanged for eligible programmes.
+
+Q: What are the subject code and credits?
+A: The course carries 2 credits. The subject code shared for Semester 2 is BENPC1201.
+
+Q: Who has to do this course?
+A: As per the university notification no. 255 dated 23.07.2026 (as modified at the end of August 2026), the course is compulsory for students of B.Tech., BBA, B.Com., B.Voc. and B.A. from the 2026 batch onwards. A later notification (no. 260) added BCA and B.Sc. programmes from the 2026 batch onwards. The course was first introduced in 2025 for B.Tech., B.Voc., B.Com. and BBA.
+
+Q: Does the course apply to other programmes such as BHMCT, BFA or BJMC?
+A: The notifications shared so far list only B.Tech., BBA, B.Com., B.Voc., B.A., BCA and B.Sc. For any other programme, please check the latest university notification or ask the course coordinator.
+
+Q: Does the course apply to lateral entry (LEET) students?
+A: For B.Tech., B.Voc., B.Com. and BBA, yes. LEET students must register on the portal or app and complete Semesters 1, 2 and 3 (they start from Semester 1 by default), but only the Semester 3 marks are counted in the final internal marks. For B.A., B.Sc. and BCA, the course does not yet apply to lateral entry (3rd semester) students. A student who joins BCA 2nd year through lateral entry does not have to do it, because for BCA it applies only from the 2026 batch onwards.
+
+Q: Where can I find the syllabus or curriculum?
+A: The Semester 2 curriculum PDF was shared in the support group. In the portal or app, open the "Tracks" option to find all the course content for your semester.
+
+Q: How many milestones are there in a semester?
+A: Semester 1 has 12 milestones. A student should complete only the milestones of the current semester. For example, a first-semester student who sees more than 12 milestones should complete only the 12 milestones of Semester 1.
+
+Q: Is the "Add revenue" option compulsory?
+A: It is not mandatory, but it carries 20 marks.
+
+Q: Can students improve their marks?
+A: Yes. Students can redo the tasks wherever they received less than 75% of the marks in a milestone (announced on 27 October 2026).
+
+Q: A student failed earlier. How can they register for the reappear?
+A: The process is the same as for other reappear subjects.
+
+Q: What is the last date to change the track?
+A: The last date was 31 October 2026, and it has now passed. The change-track option was in the Track tab of the student dashboard and was only for first-semester students. After 31 October 2026 the track is fixed and cannot be changed.
+
+Q: What is the last date for final submission?
+A: The date is likely to be 20 November 2026. This is tentative, so please confirm with the course coordinator.
+
+Q: Is Semester 2 (2025-26) still open?
+A: No. Semester 2 was officially closed on 22 July 2026, and the last date to update marks was 30 June 2026. Students who had not completed the course were to be covered in Semester 3.
+
+=== WEBSITE AND APP ===
+
+Q: Where do I access the Business Class course?
+A: Use the Business Class Curriculum website: https://businessclass.punjab.gov.in/login
+
+Q: What happened to the old Punjab Startup website and app?
+A: The old Punjab Startup website was discontinued as per the Department of Technical Education letter dated 19/08/2026. The old Punjab Startup app is no longer functional, so students must use only the new Business Class website or app from this semester. Please delete the old app. All earlier curriculum content, progress and completed learning records were synced to the new platform, so students continue from where they left off and do not need to start again.
+
+Q: How do I log in on the new website for the first time?
+A: Your user ID (login ID) remains the same. Click "Forgot Password" on the login page and reset your password once, then log in.
+
+Q: Is there a mobile app?
+A: Yes. The new Business Class app is available for Android on the Play Store (live since 8 September 2026) and for iPhone on the App Store as "Business Class Punjab": https://apps.apple.com/in/app/business-class-punjab/id6807930945 (live since 1 October 2026). Uninstall any older app versions first. The app is still under development, so if something does not work, try the website.
+
+Q: The app shows a blank screen or no tasks. What should I do?
+A: Use the website https://businessclass.punjab.gov.in/login instead, and try again later in the app after updating it.
+
+Q: Is there a tutorial to help students?
+A: Yes, a tutorial video is available here: https://youtu.be/bIkOWosJ68I
+
+Q: A student cannot install the Dukaan app on an older Android phone.
+A: Ask the student to use the web version of Dukaan.
+
+=== REGISTRATION AND PROFILE CORRECTIONS ===
+
+Q: How do students register?
+A: Newly admitted students should be enrolled using the new Business Class link as early as possible to avoid website access issues and delays in completing milestones. A student must not create more than one account.
+
+Q: My branch or course is not shown in the registration drop-down. What should I do?
+A: Register the student through the college Nodal Officer login: open the "Student Management" tab and select "Add Student". If a degree is not listed, choose the closest simple option: BCA (Hons.) - select BCA; B.A. Computer Science - select B.A.; B.Sc. Fashion Designing - select "Bachelor of Science"; B.Sc. (Hons.) Agriculture - select B.Sc.
+
+Q: A student selected the wrong stream or semester. How do we correct it?
+A: A wrong stream (for example BBA changed to BCA) can be updated from the Principal's ID. A wrong semester can be corrected from the "Student Management" tab.
+
+Q: A student selected the wrong university or college. How do we correct it?
+A: Send the course coordinator one consolidated list of such students with their correct university and college, so the technical team can correct the profiles.
+
+Q: A student moved to another college but the profile shows the old college.
+A: Send the course coordinator the student's name, roll number, email ID, old college and new college so the details can be updated.
+
+Q: What is the pop-up that asks if the student is LEET and which semester?
+A: Students may see a pop-up asking (1) whether they are LEET students (Yes/No) and (2) whether they are in Semester 1 or Semester 3. Students must select these correctly. If a student selects Yes for LEET, the college admin must verify and approve the request on the dashboard. If the selected semester is different from the records, the faculty must verify and approve it on the dashboard.
+
+Q: How can a new faculty member be added to the support group?
+A: Use the QR code shared by the course coordinator in the support group.
+
+=== LOGIN AND OTP PROBLEMS ===
+
+Q: A student cannot log in or gets "invalid credentials".
+A: First double-check the email and password. Then use the "Forgot Password" option and reset the password, especially if the student is using the new link for the first time. Login problems are often caused by network issues, so wait a little and retry, or try another network or browser. Do not register with multiple IDs.
+
+Q: The OTP is not received or expires immediately.
+A: This may be a network issue, so retry after some time or use a different network. For the email OTP, check the spam folder. In September 2026 students facing OTP problems were told they could use the last 6 digits of their mobile number as the OTP. This may have changed since, so if it does not work, report it to the course coordinator.
+
+Q: A student cannot access the email ID used for the account.
+A: The student must get that Gmail account working again. If the email and phone are both inaccessible, there is no other option, so the student should try to recover the account. If it still fails, send the details to the course coordinator.
+
+=== MILESTONES AND TASKS ===
+
+Q: A milestone or task is locked. What should I do?
+A: Please check these steps in order: (1) Make sure all previous milestones and tasks are fully completed. (2) Refresh the page or app. (3) Check that the student has answered the LEET/semester pop-up and the faculty or admin has approved the request on the dashboard. (4) Make sure the student has not created a second account. (5) Read the document "Student Milestones Get Locked" shared in the support group. (6) If it is still locked, raise a ticket and send the course coordinator the student's email ID, semester and milestone number.
+
+Q: A task says "Complete the previous step to unlock this" even though it is completed.
+A: Follow the same steps as for a locked milestone above. If it still does not open, raise a ticket.
+
+Q: The video of Milestone 7 (or 8) is not available.
+A: This is a known issue. The students cannot proceed until the video is available. It has been reported to the technical team, and an update will be shared in the support group when it is fixed (status as of late October 2026).
+
+Q: A task shows "Try Again" or will not complete.
+A: Students should retry the task until it is accepted. If the problem continues, try the website instead of the app, and raise a ticket if needed.
+
+Q: Milestones show complete for the student but the faculty portal shows fewer completed.
+A: Raise a ticket through your faculty ID with the student's email ID and a screenshot.
+
+=== EVALUATION, MARKS AND GRADES ===
+
+Q: The status shows "AI is still evaluating" or "Not yet evaluated".
+A: If the status has not changed for a few days, send the course coordinator a screenshot along with the student's email ID. It may also help to check the same task on the website.
+
+Q: The final report was rejected or shows low marks. What should the student do?
+A: The reason is shown on the screen, for example that the report is not up to the mark. The student can improve the report and retry.
+
+Q: A student completed all milestones but is shown as Fail, or the marks are much lower than before.
+A: This is a known issue that has been reported to the technical team. On 4 November 2026 the coordinator announced that the technical team has been asked to give full marks to all students who completed all milestones, and that this will be implemented within two days. Most students should then pass automatically, and students do not need to redo tasks to improve their marks. If a student is still shown as Fail after that, send the details to the course coordinator.
+
+Q: Do faculty have to review every student's work in the faculty dashboard?
+A: No. Faculty do not need to review each student unless they want to change a student's score.
+
+Q: What do students on the content creation track need to submit?
+A: Students who have a YouTube channel, Instagram page or website must submit the link of their business or channel using the sheet or Google Form shared by the course coordinator in the support group.
+
+=== SUPPORT AND CONTACT ===
+
+Q: How do I report a technical problem or query?
+A: Use the "Raise New Ticket" option in the top corner of your account in the app or portal. The core technical team will review and resolve it. Please allow 3 to 4 business days. Contact the university administration only if the query is still unanswered after this period.
+
+Q: What details should I send when reporting a problem?
+A: Send the student's name, roll number, email ID, college, semester and milestone number, the ticket number and date if you raised one, and a screenshot or short video of the error.
+
+Q: Who is the course coordinator?
+A: Dr. Jagdeep Sharma (MRSPTU EMC) coordinates the course queries in the support group and forwards issues to the technical team.
+
+Q: What if the chatbot does not know the answer?
+A: Please raise a ticket in the app or portal and also contact the helpline or email given below.
+
+
