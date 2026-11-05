@@ -46,7 +46,7 @@ async function askGemini(system, question) {
       body: JSON.stringify({
         systemInstruction: { parts: [{ text: system }] },
         contents: [{ role: "user", parts: [{ text: question }] }],
-        generationConfig: { temperature: 0.2, maxOutputTokens: 1000 },
+        generationConfig: { temperature: 0.2, maxOutputTokens: 1000, thinkingConfig: {thinkingLevel: "low" } },
       }),
     }
   );
@@ -65,6 +65,7 @@ async function askGroq(system, question) {
       model: "openai/gpt-oss-120b",
       temperature: 0.2,
       max_tokens: 1000,
+      reasoning_effort: "low",
       messages: [{ role: "system", content: system }, { role: "user", content: question }],
     }),
   });
