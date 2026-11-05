@@ -101,8 +101,8 @@ async function askGroq(model, system, question) {
 // Try every model in order until one works
 async function generate(system, question) {
   const attempts = [
-    ...GEMINI_MODELS.map((m) => () => askGemini(m, system, question)),
     ...GROQ_MODELS.map((m) => () => askGroq(m, system, question)),
+    ...GEMINI_MODELS.map((m) => () => askGemini(m, system, question)),
   ];
   const errors = [];
   for (const run of attempts) {
