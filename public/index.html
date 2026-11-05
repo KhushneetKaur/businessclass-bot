@@ -41,6 +41,7 @@
 </form>
 <script>
 const log=document.getElementById("log"),f=document.getElementById("f"),q=document.getElementById("q"),send=document.getElementById("send"),chips=document.getElementById("chips");
+function fmt(t){return t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/^\s*[-] /gm,"• ").replace(/\\(.+?)\\*/g,"<strong>$1</strong>")}
 function add(t,c){const d=document.createElement("div");d.className="m "+c;d.textContent=t;log.appendChild(d);log.scrollTop=log.scrollHeight;return d}
 async function ask(text){
   chips.remove&&chips.remove();
@@ -50,7 +51,7 @@ async function ask(text){
     if(!r.ok){wait.textContent=(await r.text())||"Something went wrong."}
     else if(r.body&&r.body.getReader){
       const rd=r.body.getReader(),dec=new TextDecoder();let out="";
-      while(true){const{done,value}=await rd.read();if(done)break;out+=dec.decode(value,{stream:true});wait.textContent=out;log.scrollTop=log.scrollHeight}
+      while(true){const{done,value}=await rd.read();if(done)break;out+=dec.decode(value,{stream:true});wait.innerHTML=fmt(out);log.scrollTop=log.scrollHeight}
       if(!out)wait.textContent="Something went wrong. Please try again."
     }else{wait.textContent=await r.text()}
   }catch(e){wait.textContent="No connection. Check your internet and try again."}
