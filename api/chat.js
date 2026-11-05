@@ -1,4 +1,6 @@
-const FAQ = require("../faq");
+const fs = require ("fs");
+const path = require ("path");
+const FAQ = fs.readFileSync(path.join(process.cwd(), "faq.txt"), "utf8");
 
 const SYSTEM = `You are the helpful assistant for the "Business Class" app course at MRSPTU Bathinda.
 Answer ONLY using the FAQ below. Keep answers short, clear and friendly. Reply in the language the student writes in (English, Hindi or Hinglish).
