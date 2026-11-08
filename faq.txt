@@ -1,41 +1,83 @@
-BUSINESS CLASS (ENTREPRENEURSHIP MINDSET COURSE) - FREQUENTLY ASKED QUESTIONS
-Source: official replies and notices in the course support WhatsApp group (MRSPTU and affiliated colleges), 21 May 2026 to 4 Nov 2026.
-Status of known issues is as of 4 November 2026. Update this file when things change.
-Contact: Course Coordinator Dr. Jagdeep Sharma. Helpline Number: 9915852929. Raise a ticket in the app or portal first.
+BUSINESS CLASS (ENTREPRENEURSHIP MINDSET COURSE) - FREQUENTLY ASKED QUESTIONS  
+
+Contact: Course Coordinator Dr. Jagdeep Sharma. Raise a ticket in the app or portal first.
 
 FREQUENTLY ASKED QUESTIONS:
 
 === ABOUT THE COURSE ===
 
 Q: What is Business Class (Entrepreneurship Mindset Course, EMC)?
-A: Business Class, also called the Entrepreneurship Mindset Course (EMC), is a mandatory 2-credit course introduced by the Punjab Government (Team Punjab Startup with the Department of Technical Education) for students of MRSPTU and its affiliated colleges. Students complete milestones and tasks on the Business Class website and app. The course name, codes and credit structure across semesters 1 to 5 remain unchanged for eligible programmes.
+A: Business Class, previously called the Entrepreneurship Mindset Course (EMC), is a mandatory 2-credit course introduced by the Punjab Government ( with the Department of Technical Education) for students. 
 
 Q: What are the subject code and credits?
-A: The course carries 2 credits. The subject code shared for Semester 2 is BENPC1201.
+A: 
+Course name
+Code
+Category
+Semester
+Credits
+1. Entrepreneurship Set Up and Launch
+BENPC1-101
+SEC
+1
+2
+2. Entrepreneurship Marketing Basics
+BENPC1-201
+SEC
+2
+2
+3. Entrepreneurship Operations and Scale
+BENPC1-301
+SEC
+3
+2
+4.Entrepreneurship  Organic Growth
+BENPC1-401
+SEC
+4
+2
+5.Entrepreneurship Automation and Financial Mastery
+BENPC1-501
+SEC
+5
+2
+
+
 
 Q: Who has to do this course?
-A: As per the university notification no. 255 dated 23.07.2026 (as modified at the end of August 2026), the course is compulsory for students of B.Tech., BBA, B.Com., B.Voc. and B.A. from the 2026 batch onwards. A later notification (no. 260) added BCA and B.Sc. programmes from the 2026 batch onwards. The course was first introduced in 2025 for B.Tech., B.Voc., B.Com. and BBA.
+A: As per the university notification no. 255 dated 23.07.2026 (as modified at the end of August 2026), the course is compulsory for students of B.Tech., BBA, B.Com., B.Voc. and B.A. from the 2026 batch onwards. A later notification (no. 260) added BCA and B.Sc. programmes from the 2026 batch onwards. 
+The mandatory 2-credit course shall be implemented with effect from the 2026 Batch onwards for students enrolled in the following Undergraduate programmes:
+B.Tech.
+BBA
+B.Com.
+B.Voc.
+B.A.
+B.Sc.
+BCA
 
 Q: Does the course apply to other programmes such as BHMCT, BFA or BJMC?
-A: The notifications shared so far list only B.Tech., BBA, B.Com., B.Voc., B.A., BCA and B.Sc. For any other programme, please check the latest university notification or ask the course coordinator.
+A: As per the university notifications the course will be mandatory for B.Tech., BBA, B.Com., B.Voc., B.A., BCA and B.Sc. For any other programme, please check the latest university notification or ask the course coordinator.
 
 Q: Does the course apply to lateral entry (LEET) students?
-A: For B.Tech., B.Voc., B.Com. and BBA, yes. LEET students must register on the portal or app and complete Semesters 1, 2 and 3 (they start from Semester 1 by default), but only the Semester 3 marks are counted in the final internal marks. For B.A., B.Sc. and BCA, the course does not yet apply to lateral entry (3rd semester) students. A student who joins BCA 2nd year through lateral entry does not have to do it, because for BCA it applies only from the 2026 batch onwards.
+A: For B.Tech., B.Voc., B.Com. and BBA, yes. LEET students must register on the portal or app and complete Semesters 1, 2 and 3 (they start from Semester 1 by default), but only the Semester 3 marks are counted in the final internal marks.
+For B.A., B.Sc. and BCA, the course does not yet apply to lateral entry (3rd semester) students. A student who joins BCA 2nd year through lateral entry does not have to do it, because for BCA it applies only from the 2026 batch onwards.
 
 Q: Where can I find the syllabus or curriculum?
-A: The Semester 2 curriculum PDF was shared in the support group. In the portal or app, open the "Tracks" option to find all the course content for your semester.
+A: In the portal or app, open the "Tracks" option to find all the course content for your semester.
 
 Q: How many milestones are there in a semester?
-A: Semester 1 has 12 milestones. A student should complete only the milestones of the current semester. For example, a first-semester student who sees more than 12 milestones should complete only the 12 milestones of Semester 1.
+A: Each semester usually has 12 milestones and each milestone comprises 3 tasks. 
+Q. Can I complete the next semester milestones as well?
+A: A student should complete only the milestones of the current semester. For example, a first-semester student who sees more than 12 milestones should complete only the 12 milestones of Semester 1.
 
 Q: Is the "Add revenue" option compulsory?
 A: It is not mandatory, but it carries 20 marks.
 
 Q: Can students improve their marks?
-A: Yes. Students can redo the tasks wherever they received less than 75% of the marks in a milestone (announced on 27 October 2026).
+A: Yes. Students can redo the tasks wherever they received less than 75% of the marks in a milestone using the “improve my marks" option. .
 
 Q: A student failed earlier. How can they register for the reappear?
-A: The process is the same as for other reappear subjects.
+A: The process is the same as for other university reappear subjects.
 
 Q: What is the last date to change the track?
 A: The last date was 31 October 2026, and it has now passed. The change-track option was in the Track tab of the student dashboard and was only for first-semester students. After 31 October 2026 the track is fixed and cannot be changed.
@@ -52,7 +94,9 @@ Q: Where do I access the Business Class course?
 A: Use the Business Class Curriculum website: https://businessclass.punjab.gov.in/login
 
 Q: What happened to the old Punjab Startup website and app?
-A: The old Punjab Startup website was discontinued as per the Department of Technical Education letter dated 19/08/2026. The old Punjab Startup app is no longer functional, so students must use only the new Business Class website or app from this semester. Please delete the old app. All earlier curriculum content, progress and completed learning records were synced to the new platform, so students continue from where they left off and do not need to start again.
+A: The old Punjab Startup website was discontinued as per the Department of Technical Education letter dated 19/08/2026. 
+The old Punjab Startup app is no longer functional, so students must use only the new Business Class website or app from this semester. 
+Please delete the old app. All earlier curriculum content, progress and completed learning records were synced to the new platform, so students continue from where they left off and do not need to start again.
 
 Q: How do I log in on the new website for the first time?
 A: Your user ID (login ID) remains the same. Click "Forgot Password" on the login page and reset your password once, then log in.
@@ -65,17 +109,19 @@ A: Use the website https://businessclass.punjab.gov.in/login instead, and try ag
 
 Q: Is there a tutorial to help students?
 A: Yes, a tutorial video is available here: https://youtu.be/bIkOWosJ68I
-
+Or
+The tutorials are given in the business class App and website.
 Q: A student cannot install the Dukaan app on an older Android phone.
 A: Ask the student to use the web version of Dukaan.
 
 === REGISTRATION AND PROFILE CORRECTIONS ===
 
 Q: How do students register?
-A: Newly admitted students should be enrolled using the new Business Class link as early as possible to avoid website access issues and delays in completing milestones. A student must not create more than one account.
+A: Newly admitted students should be enrolled using the new Business Class link. A student must not create more than one account.
 
 Q: My branch or course is not shown in the registration drop-down. What should I do?
-A: Register the student through the college Nodal Officer login: open the "Student Management" tab and select "Add Student". If a degree is not listed, choose the closest simple option: BCA (Hons.) - select BCA; B.A. Computer Science - select B.A.; B.Sc. Fashion Designing - select "Bachelor of Science"; B.Sc. (Hons.) Agriculture - select B.Sc.
+A: Register the student through the college Nodal Officer login: open the "Student Management" tab and select "Add Student". 
+If a degree is not listed, choose the closest simple option: For example : for BCA (Hons.) - select BCA; B.A. Computer Science - select B.A.; B.Sc. Fashion Designing - select "Bachelor of Science"; B.Sc. (Hons.) Agriculture - select B.Sc.
 
 Q: A student selected the wrong stream or semester. How do we correct it?
 A: A wrong stream (for example BBA changed to BCA) can be updated from the Principal's ID. A wrong semester can be corrected from the "Student Management" tab.
@@ -150,5 +196,4 @@ A: Dr. Jagdeep Sharma (MRSPTU EMC) coordinates the course queries in the support
 
 Q: What if the chatbot does not know the answer?
 A: Please raise a ticket in the app or portal and also contact the helpline or email given below.
-
 
