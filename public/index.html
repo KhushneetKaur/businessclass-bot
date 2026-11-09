@@ -40,6 +40,10 @@
   <button id="send">Send</button>
 </form>
 <script>
+window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<script>
 const log=document.getElementById("log"),f=document.getElementById("f"),q=document.getElementById("q"),send=document.getElementById("send"),chips=document.getElementById("chips");
 // Turns the AI's markdown-style text into safe HTML (bold + bullets). \u002A is the asterisk character.
 function fmt(t){return t.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/^\s*[\u002A-] /gm,"• ").replace(/\u002A\u002A(.+?)\u002A\u002A/g,"<strong>$1</strong>")}
